@@ -1,8 +1,8 @@
 import datetime
 import os
 import pandas as pd
-from selenium.webdriver import Chrome, ChromeOptions
 import time
+from selenium.webdriver import Chrome, ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -24,7 +24,7 @@ def set_driver(driver_path, headless_flg):
     # options.add_argument('log-level=3')
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--ignore-ssl-errors')
-    options.add_argument('--incognito')          # シークレットモードの設定を付与
+    # options.add_argument('--incognito')          # シークレットモードの設定を付与
 
     
 
@@ -38,10 +38,11 @@ def main():
     # 任意のキーワードをコンソール（黒い画面）から指定して検索できるようにしてみましょう
     search_keyword = input("検索ワードを入力（例：大阪 エンジニア 在宅勤務）→")
     # driverを起動
+    custom_path = "./"
     if os.name == 'nt': #Windows
-        driver = set_driver("chromedriver.exe", False)
+        driver = set_driver(ChromeDriverManager(path=custom_path).install(), False)
     elif os.name == 'posix': #Mac
-        driver = set_driver("chromedriver", False)
+        driver = set_driver(ChromeDriverManager(path=custom_path).install(), False)
     # Webサイトを開く
     # driver.Chrome(ChromeDriverManager().install())
     driver.get("https://tenshoku.mynavi.jp/")
