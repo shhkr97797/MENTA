@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>eelテスト</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+
+    <h2>eelテスト</h2>
+    <div class="hs_input_wrap">
+        <input type="text" name="" id="csv_name" placeholder="保存するファイル名を入力"><br>
+        <input type="text" name="" id="word" placeholder="ここに入力して下さい">
+        <input type="button" value="検索" id="search">
+    </div>
+    <!--
+        # 3
+        検索結果をデスクトップアプリの画面に表示できるようにtextareaタグを使ってログ表示領域を作成してください。
+    -->
+    <textarea name="" class="textarea" id="textarea" cols="30" rows="10"></textarea>
+
+
+<script type="text/javascript" src="./eel.js"></script>
+<script>
+    search.addEventListener('click', () => {
+        //#2 検索ワード入力が空だったらアラートを表示させ、検索はしないようにしてください
+        if(word.value == "" || csv_name.value == ""){
+            alert("入力して下さい。")
+        } else{
+            eel.kimetsu_search(word.value, csv_name.value)
+        }
+    })
+
+    eel.expose(view_log_js)
+    function view_log_js(text){
+        //# 4 作成したログ表示領域にkimetsu_searchの結果を表示できるようにしてください
+        textarea.append(text, "\n")
+    }
+</script>
+</body>
+</html>
